@@ -7,7 +7,7 @@ from django.urls import path, include
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="Income Expenses API",
+        title="Inventory System API",
         default_version='v1',
         description="Test description",
         terms_of_service="https://www.app.com/policies/terms/",
