@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-g!5srsch&12^-6ggfy_1a)4r97%3^2!0(&6)jy4emcwls(-f7_
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+AUTH_USER_MODEL = 'authentication.User'
 
 # Application definition
 
@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'corsheaders',
     'drf_yasg',
+
+    'authentication',
 ]
 
 MIDDLEWARE = [
