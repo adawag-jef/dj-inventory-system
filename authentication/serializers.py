@@ -1,4 +1,5 @@
 
+from functools import partial
 from django.contrib import auth
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from django.contrib.sites.shortcuts import get_current_site
@@ -6,11 +7,11 @@ from django.urls import reverse
 from django.utils.encoding import (DjangoUnicodeDecodeError, force_str,
                                    smart_bytes, smart_str)
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
-from rest_framework import serializers
+from rest_framework import permissions, serializers
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework_simplejwt.tokens import RefreshToken, TokenError
 
-from .models import User
+from .models import User, UserProfile, Role, Permission
 
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -143,3 +144,71 @@ class LogoutSerializer(serializers.Serializer):
             RefreshToken(self.token).blacklist()
         except TokenError:
             self.fail('bad_token')
+
+
+class ProfileSerializer(serializers.ModelSerializer):
+    # profile_picture = serializers.CharField(max_length=255, read_only=True)
+
+    class Meta:
+        model = UserProfile
+        fields = ('profile_picture',
+                  'first_name',
+                  'last_name',
+                  'gender',
+                  'birthday',)
+
+
+class UserSerializer(serializers.ModelSerializer):
+
+    password = serializers.CharField(
+        max_length=68, min_length=6, write_only=True)
+    # user_profile = ProfileSerializer()
+
+    # def to_representation(self, instance):
+    #     ret = super().to_representation(instance)
+
+    #     profile = ProfileSerializer(instance.user_profile).data
+    #     ret['user_profile'] = profile
+    #     return ret
+
+    class Meta:
+        model = User
+        fields = ('id', 'email', 'username', 'password',
+                  'created_at', 'updated_at', 'user_profile')
+        read_only_fields = ['user_profile']
+
+    def create(self, validated_data):
+        return User.objects.create_user(**validated_data)
+
+
+class UserProfileSerializer(serializers.ModelSerializer):
+
+    user = UserSerializer(read_only=True)
+
+    class Meta:
+        model = UserProfile
+        fields = '__all__'
+        # read_only_fields = ['user']
+
+
+class PermissionSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Permission
+        fields = '__all__'
+
+
+class RoleSerializer(serializers.ModelSerializer):
+
+    # permissions = PermissionSerializer(many=True, partial=True)
+    def to_representation(self, instance):
+        ret = super().to_representation(instance)
+
+        permissions = PermissionSerializer(
+            instance.permissions, many=True).data
+        ret['permissions'] = permissions
+        return ret
+
+    class Meta:
+        model = Role
+        fields = '__all__'

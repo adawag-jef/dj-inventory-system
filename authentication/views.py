@@ -11,17 +11,23 @@ from django.utils.encoding import (DjangoUnicodeDecodeError, force_str,
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
-from rest_framework import generics, permissions, status, views
+from rest_framework import generics, permissions, status, views, viewsets, mixins
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 
-from .models import User
+from .models import User, UserProfile, Role, Permission
 from .renderers import UserRenderer
 from .serializers import (EmailVerificationSerializer, LoginSerializer,
                           RegisterSerializer,
-                          RequestPasswordEmailRequestSerializer, SetNewPasswordSerializer, LogoutSerializer)
+                          RequestPasswordEmailRequestSerializer, SetNewPasswordSerializer,
+                          LogoutSerializer, UserSerializer, UserProfileSerializer,
+                          RoleSerializer, PermissionSerializer)
 from .utils import Util
 from django.shortcuts import redirect
+import cloudinary.uploader
+import cloudinary
+
+from .permissions import UserActionPermission
 
 
 class RegisterView(generics.GenericAPIView):
@@ -171,3 +177,71 @@ class LogoutAPIView(generics.GenericAPIView):
         serializer.save()
 
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class UserViewset(viewsets.ModelViewSet):
+
+    serializer_class = UserSerializer
+    queryset = User.objects.all()
+
+    permission_classes = [permissions.IsAuthenticated, UserActionPermission]
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        cloudinary.uploader.destroy(
+            instance.user_profile.profile_picture.public_id, invalidate=True)
+        self.perform_destroy(instance)
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class UserProfileViewset(viewsets.ModelViewSet):
+
+    serializer_class = UserProfileSerializer
+    queryset = UserProfile.objects.all()
+    permission_classes = [permissions.IsAuthenticated, UserActionPermission]
+
+
+class RoleViewset(viewsets.ModelViewSet):
+
+    serializer_class = RoleSerializer
+    queryset = Role.objects.all()
+    permission_classes = [permissions.IsAuthenticated, UserActionPermission]
+
+
+class PermissionViewset(viewsets.ModelViewSet):
+
+    serializer_class = PermissionSerializer
+    queryset = Permission.objects.all()
+    permission_classes = [permissions.IsAuthenticated, UserActionPermission]
+
+
+class UserAPIView(generics.ListCreateAPIView):
+
+    serializer_class = UserSerializer
+    queryset = User.objects.all()
+
+
+class UserDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+
+    serializer_class = UserSerializer
+    queryset = User.objects.all()
+    lookup_field = 'id'
+
+
+class UserProfileAPIView(generics.ListCreateAPIView):
+
+    serializer_class = UserProfileSerializer
+    queryset = UserProfile.objects.all()
+
+
+class UserProfileDetailAPIView(generics.GenericAPIView, mixins.RetrieveModelMixin, mixins.UpdateModelMixin):
+
+    serializer_class = UserProfileSerializer
+    queryset = UserProfile.objects.all()
+    lookup_field = 'id'
+
+    def put(self, request, *args, **kwargs):
+        return self.partial_update(request, *args, **kwargs)
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
