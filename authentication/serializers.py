@@ -1,5 +1,4 @@
 
-from functools import partial
 from django.contrib import auth
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from django.contrib.sites.shortcuts import get_current_site
@@ -7,11 +6,11 @@ from django.urls import reverse
 from django.utils.encoding import (DjangoUnicodeDecodeError, force_str,
                                    smart_bytes, smart_str)
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
-from rest_framework import permissions, serializers
+from rest_framework import serializers
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework_simplejwt.tokens import RefreshToken, TokenError
 
-from .models import User, UserProfile, Role, Permission
+from .models import Permission, Role, User, UserProfile
 
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -164,17 +163,17 @@ class UserSerializer(serializers.ModelSerializer):
         max_length=68, min_length=6, write_only=True)
     # user_profile = ProfileSerializer()
 
-    # def to_representation(self, instance):
-    #     ret = super().to_representation(instance)
+    def to_representation(self, instance):
+        ret = super().to_representation(instance)
 
-    #     profile = ProfileSerializer(instance.user_profile).data
-    #     ret['user_profile'] = profile
-    #     return ret
+        role = RoleSerializer(instance.role).data
+        ret['role'] = role
+        return ret
 
     class Meta:
         model = User
         fields = ('id', 'email', 'username', 'password',
-                  'created_at', 'updated_at', 'user_profile')
+                  'created_at', 'updated_at', 'user_profile', 'role')
         read_only_fields = ['user_profile']
 
     def create(self, validated_data):

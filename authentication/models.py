@@ -105,7 +105,8 @@ class UserProfile(models.Model):
     gender = models.CharField(choices=GENDER_OPTIONS,
                               max_length=20, null=True, blank=True)
     birthday = models.DateField(null=True, blank=True)
-    profile_picture = CloudinaryField('image', blank=True, null=True)
+    profile_picture = CloudinaryField(
+        'image', blank=True, null=True, default="image/upload/v1531667999/default.png")
 
     def __str__(self):
         return self.user.email

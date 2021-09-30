@@ -1,33 +1,33 @@
 import os
-from django.shortcuts import redirect
 
+import cloudinary
+import cloudinary.uploader
 import jwt
 from django.conf import settings
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from django.contrib.sites.shortcuts import get_current_site
+from django.shortcuts import redirect
 from django.urls import reverse
 from django.utils.encoding import (DjangoUnicodeDecodeError, force_str,
                                    smart_bytes, smart_str)
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
-from rest_framework import generics, permissions, status, views, viewsets, mixins
+from rest_framework import (generics, mixins, permissions, status, views,
+                            viewsets)
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 
-from .models import User, UserProfile, Role, Permission
+from .models import Permission, Role, User, UserProfile
+from .permissions import UserActionPermission
 from .renderers import UserRenderer
 from .serializers import (EmailVerificationSerializer, LoginSerializer,
+                          LogoutSerializer, PermissionSerializer,
                           RegisterSerializer,
-                          RequestPasswordEmailRequestSerializer, SetNewPasswordSerializer,
-                          LogoutSerializer, UserSerializer, UserProfileSerializer,
-                          RoleSerializer, PermissionSerializer)
+                          RequestPasswordEmailRequestSerializer,
+                          RoleSerializer, SetNewPasswordSerializer,
+                          UserProfileSerializer, UserSerializer)
 from .utils import Util
-from django.shortcuts import redirect
-import cloudinary.uploader
-import cloudinary
-
-from .permissions import UserActionPermission
 
 
 class RegisterView(generics.GenericAPIView):
@@ -188,8 +188,9 @@ class UserViewset(viewsets.ModelViewSet):
 
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
-        cloudinary.uploader.destroy(
-            instance.user_profile.profile_picture.public_id, invalidate=True)
+        if instance.user_profile.profile_picture.public_id != "default":
+            cloudinary.uploader.destroy(
+                instance.user_profile.profile_picture.public_id, invalidate=True)
         self.perform_destroy(instance)
         return Response(status=status.HTTP_204_NO_CONTENT)
 
@@ -199,6 +200,23 @@ class UserProfileViewset(viewsets.ModelViewSet):
     serializer_class = UserProfileSerializer
     queryset = UserProfile.objects.all()
     permission_classes = [permissions.IsAuthenticated, UserActionPermission]
+
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+        if request.FILES:
+            if instance.profile_picture.public_id != "default":
+                cloudinary.uploader.destroy(
+                    instance.profile_picture.public_id, invalidate=True)
+        serializer = self.get_serializer(
+            instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+
+        if getattr(instance, '_prefetched_objects_cache', None):
+            instance._prefetched_objects_cache = {}
+
+        return Response(serializer.data)
 
 
 class RoleViewset(viewsets.ModelViewSet):
@@ -215,6 +233,7 @@ class PermissionViewset(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated, UserActionPermission]
 
 
+# Generic Views backup
 class UserAPIView(generics.ListCreateAPIView):
 
     serializer_class = UserSerializer
