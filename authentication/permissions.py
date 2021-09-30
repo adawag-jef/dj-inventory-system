@@ -2,7 +2,7 @@ from rest_framework import permissions
 
 
 class UserActionPermission(permissions.BasePermission):
-
+    message = "You don't have permission to perform this action please contact admin."
     # def has_permission(self, request, view):
     #     if request.user.role.title == 'Admin':
     #         return True
