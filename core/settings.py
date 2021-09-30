@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'cloudinary_storage',
+    # 'cloudinary_storage',
     'django.contrib.staticfiles',
     'cloudinary',
     'rest_framework',
@@ -134,8 +134,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-# MEDIA_ROOT = str(BASE_DIR) + MEDIA_URL
+# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+MEDIA_ROOT = str(BASE_DIR) + MEDIA_URL
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
@@ -176,11 +176,11 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
 }
 
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'epy-tuitt',
-    'API_KEY': '891585985475915',
-    'API_SECRET': 'CQAuzISpMotu1nD0HHOmXx0bPco'
-}
+# CLOUDINARY_STORAGE = {
+#     'CLOUD_NAME': 'epy-tuitt',
+#     'API_KEY': '891585985475915',
+#     'API_SECRET': 'CQAuzISpMotu1nD0HHOmXx0bPco'
+# }
 
 cloudinary.config(
     cloud_name='epy-tuitt',
