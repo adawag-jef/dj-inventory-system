@@ -1,0 +1,739 @@
+[
+{
+  "model": "sessions.session",
+  "pk": "negkarfr86fikub2uabhd7z0zlq117a9",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2hBgKKBL9z0DgWFGqoYmpV0Z765NutDtf-_9l4hpW2vcOi1xKuIitDj9bjnhg9oOyj212yxxbusyZbkr8qBdjnOh5_Vw_w5q6vVbg6OUAbxW6NAS4MCDK4TMRD7YdHaGLQRDpKwDxVpz8MVajQzOaCPeH_QHN9M:1mWAaG:_kJQXT5LBQ1JCxlzZIFaFmwj8Cm5zCvRTMTLI-DwRFo",
+    "expire_date": "2021-10-15T04:55:44.532Z"
+  }
+},
+{
+  "model": "authentication.permission",
+  "pk": 1,
+  "fields": {
+    "title": "create-user",
+    "description": "Ability to create uesrs",
+    "created_at": "2021-10-01T04:56:24.411Z",
+    "updated_at": "2021-10-01T04:56:43.305Z"
+  }
+},
+{
+  "model": "authentication.permission",
+  "pk": 2,
+  "fields": {
+    "title": "list-user",
+    "description": "Ability to list users",
+    "created_at": "2021-10-01T04:57:13.546Z",
+    "updated_at": "2021-10-01T04:57:13.546Z"
+  }
+},
+{
+  "model": "authentication.permission",
+  "pk": 3,
+  "fields": {
+    "title": "retrieve-user",
+    "description": "Ability to view a user",
+    "created_at": "2021-10-01T04:57:30.898Z",
+    "updated_at": "2021-10-01T04:57:30.898Z"
+  }
+},
+{
+  "model": "authentication.permission",
+  "pk": 4,
+  "fields": {
+    "title": "update-user",
+    "description": "Ability to edit a user",
+    "created_at": "2021-10-01T04:57:43.083Z",
+    "updated_at": "2021-10-01T04:57:43.083Z"
+  }
+},
+{
+  "model": "authentication.permission",
+  "pk": 5,
+  "fields": {
+    "title": "destroy-user",
+    "description": "Ability to delete a user",
+    "created_at": "2021-10-01T04:58:01.488Z",
+    "updated_at": "2021-10-01T04:58:01.488Z"
+  }
+},
+{
+  "model": "authentication.permission",
+  "pk": 6,
+  "fields": {
+    "title": "list-userprofile",
+    "description": "Ability to list profiles",
+    "created_at": "2021-10-01T04:58:50.858Z",
+    "updated_at": "2021-10-01T04:58:50.859Z"
+  }
+},
+{
+  "model": "authentication.permission",
+  "pk": 7,
+  "fields": {
+    "title": "create-userprofile",
+    "description": "ability to create a profile",
+    "created_at": "2021-10-01T04:59:11.546Z",
+    "updated_at": "2021-10-01T04:59:11.546Z"
+  }
+},
+{
+  "model": "authentication.permission",
+  "pk": 8,
+  "fields": {
+    "title": "retrieve-userprofile",
+    "description": "Ability to view a profile",
+    "created_at": "2021-10-01T04:59:36.019Z",
+    "updated_at": "2021-10-01T04:59:36.020Z"
+  }
+},
+{
+  "model": "authentication.permission",
+  "pk": 9,
+  "fields": {
+    "title": "update-userprofile",
+    "description": "Ability to edit a profile",
+    "created_at": "2021-10-01T04:59:52.835Z",
+    "updated_at": "2021-10-01T04:59:52.835Z"
+  }
+},
+{
+  "model": "authentication.permission",
+  "pk": 10,
+  "fields": {
+    "title": "destroy-userprofile",
+    "description": "Ability to delete a profile",
+    "created_at": "2021-10-01T05:00:14.892Z",
+    "updated_at": "2021-10-01T05:00:14.892Z"
+  }
+},
+{
+  "model": "authentication.permission",
+  "pk": 11,
+  "fields": {
+    "title": "list-role",
+    "description": "Ability to list roles",
+    "created_at": "2021-10-01T05:00:42.844Z",
+    "updated_at": "2021-10-01T05:00:42.844Z"
+  }
+},
+{
+  "model": "authentication.permission",
+  "pk": 12,
+  "fields": {
+    "title": "create-role",
+    "description": "Ability to create a role",
+    "created_at": "2021-10-01T05:00:55.733Z",
+    "updated_at": "2021-10-01T05:00:55.733Z"
+  }
+},
+{
+  "model": "authentication.permission",
+  "pk": 13,
+  "fields": {
+    "title": "retrieve-role",
+    "description": "Ability to view a role",
+    "created_at": "2021-10-01T05:01:36.870Z",
+    "updated_at": "2021-10-01T05:01:36.870Z"
+  }
+},
+{
+  "model": "authentication.permission",
+  "pk": 14,
+  "fields": {
+    "title": "update-role",
+    "description": "Ability to edit a role",
+    "created_at": "2021-10-01T05:01:54.020Z",
+    "updated_at": "2021-10-01T05:01:54.020Z"
+  }
+},
+{
+  "model": "authentication.permission",
+  "pk": 15,
+  "fields": {
+    "title": "destroy-role",
+    "description": "Ability to delete a role",
+    "created_at": "2021-10-01T05:02:21.804Z",
+    "updated_at": "2021-10-01T05:02:21.804Z"
+  }
+},
+{
+  "model": "authentication.permission",
+  "pk": 16,
+  "fields": {
+    "title": "list-permission",
+    "description": "Ability to list permissions",
+    "created_at": "2021-10-01T05:02:58.170Z",
+    "updated_at": "2021-10-01T05:02:58.170Z"
+  }
+},
+{
+  "model": "authentication.permission",
+  "pk": 17,
+  "fields": {
+    "title": "create-permission",
+    "description": "Ability to create a permission",
+    "created_at": "2021-10-01T05:03:14.514Z",
+    "updated_at": "2021-10-01T05:03:14.514Z"
+  }
+},
+{
+  "model": "authentication.permission",
+  "pk": 18,
+  "fields": {
+    "title": "retrieve-permission",
+    "description": "Ability to view a permission",
+    "created_at": "2021-10-01T05:03:37.489Z",
+    "updated_at": "2021-10-01T05:03:37.489Z"
+  }
+},
+{
+  "model": "authentication.permission",
+  "pk": 19,
+  "fields": {
+    "title": "update-permission",
+    "description": "Ability to edit a permission",
+    "created_at": "2021-10-01T05:03:58.706Z",
+    "updated_at": "2021-10-01T05:03:58.706Z"
+  }
+},
+{
+  "model": "authentication.permission",
+  "pk": 20,
+  "fields": {
+    "title": "destroy-permission",
+    "description": "Ability to delete a permission",
+    "created_at": "2021-10-01T05:04:14.612Z",
+    "updated_at": "2021-10-01T05:04:14.612Z"
+  }
+},
+{
+  "model": "authentication.role",
+  "pk": 1,
+  "fields": {
+    "title": "Admin",
+    "description": "Administrator",
+    "created_at": "2021-10-01T05:04:50.158Z",
+    "updated_at": "2021-10-01T05:04:50.158Z",
+    "permissions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20
+    ]
+  }
+},
+{
+  "model": "authentication.role",
+  "pk": 2,
+  "fields": {
+    "title": "Staff",
+    "description": "Staff",
+    "created_at": "2021-10-01T05:05:33.566Z",
+    "updated_at": "2021-10-01T05:05:33.566Z",
+    "permissions": [
+      2,
+      3,
+      4,
+      6,
+      8
+    ]
+  }
+},
+{
+  "model": "authentication.role",
+  "pk": 3,
+  "fields": {
+    "title": "Regular",
+    "description": "Regular",
+    "created_at": "2021-10-01T05:06:31.816Z",
+    "updated_at": "2021-10-01T05:06:31.816Z",
+    "permissions": [
+      2,
+      3,
+      6,
+      7
+    ]
+  }
+},
+{
+  "model": "authentication.user",
+  "fields": {
+    "password": "pbkdf2_sha256$260000$cEhYiEgeShVBbM63rn9r69$a2Jhv/ur3+8M2FsHiVx3+FVJtB1YxSMe9FDaPMOocOI=",
+    "last_login": "2021-10-01T04:55:44.509Z",
+    "is_superuser": true,
+    "username": "admin",
+    "email": "admin@admin.com",
+    "is_verified": false,
+    "is_active": true,
+    "is_staff": true,
+    "role": null,
+    "created_at": "2021-10-01T04:53:05.205Z",
+    "updated_at": "2021-10-01T04:53:05.253Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "authentication.userprofile",
+  "pk": 1,
+  "fields": {
+    "user": [
+      "admin@admin.com"
+    ],
+    "first_name": null,
+    "last_name": null,
+    "gender": null,
+    "birthday": null,
+    "profile_picture": "image/upload/v1531667999/default.png"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2021-10-01T04:56:24.413Z",
+    "user": [
+      "admin@admin.com"
+    ],
+    "content_type": [
+      "authentication",
+      "permission"
+    ],
+    "object_id": "1",
+    "object_repr": "list-user",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2021-10-01T04:56:43.307Z",
+    "user": [
+      "admin@admin.com"
+    ],
+    "content_type": [
+      "authentication",
+      "permission"
+    ],
+    "object_id": "1",
+    "object_repr": "create-user",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Title\", \"Description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2021-10-01T04:57:13.547Z",
+    "user": [
+      "admin@admin.com"
+    ],
+    "content_type": [
+      "authentication",
+      "permission"
+    ],
+    "object_id": "2",
+    "object_repr": "list-user",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2021-10-01T04:57:30.903Z",
+    "user": [
+      "admin@admin.com"
+    ],
+    "content_type": [
+      "authentication",
+      "permission"
+    ],
+    "object_id": "3",
+    "object_repr": "retrieve-user",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2021-10-01T04:57:43.089Z",
+    "user": [
+      "admin@admin.com"
+    ],
+    "content_type": [
+      "authentication",
+      "permission"
+    ],
+    "object_id": "4",
+    "object_repr": "update-user",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2021-10-01T04:58:01.491Z",
+    "user": [
+      "admin@admin.com"
+    ],
+    "content_type": [
+      "authentication",
+      "permission"
+    ],
+    "object_id": "5",
+    "object_repr": "destroy-user",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2021-10-01T04:58:50.861Z",
+    "user": [
+      "admin@admin.com"
+    ],
+    "content_type": [
+      "authentication",
+      "permission"
+    ],
+    "object_id": "6",
+    "object_repr": "list-userprofile",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 8,
+  "fields": {
+    "action_time": "2021-10-01T04:59:11.549Z",
+    "user": [
+      "admin@admin.com"
+    ],
+    "content_type": [
+      "authentication",
+      "permission"
+    ],
+    "object_id": "7",
+    "object_repr": "create-userprofile",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 9,
+  "fields": {
+    "action_time": "2021-10-01T04:59:36.027Z",
+    "user": [
+      "admin@admin.com"
+    ],
+    "content_type": [
+      "authentication",
+      "permission"
+    ],
+    "object_id": "8",
+    "object_repr": "retrieve-userprofile",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 10,
+  "fields": {
+    "action_time": "2021-10-01T04:59:52.836Z",
+    "user": [
+      "admin@admin.com"
+    ],
+    "content_type": [
+      "authentication",
+      "permission"
+    ],
+    "object_id": "9",
+    "object_repr": "update-userprofile",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 11,
+  "fields": {
+    "action_time": "2021-10-01T05:00:14.894Z",
+    "user": [
+      "admin@admin.com"
+    ],
+    "content_type": [
+      "authentication",
+      "permission"
+    ],
+    "object_id": "10",
+    "object_repr": "destroy-userprofile",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 12,
+  "fields": {
+    "action_time": "2021-10-01T05:00:42.848Z",
+    "user": [
+      "admin@admin.com"
+    ],
+    "content_type": [
+      "authentication",
+      "permission"
+    ],
+    "object_id": "11",
+    "object_repr": "list-role",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 13,
+  "fields": {
+    "action_time": "2021-10-01T05:00:55.736Z",
+    "user": [
+      "admin@admin.com"
+    ],
+    "content_type": [
+      "authentication",
+      "permission"
+    ],
+    "object_id": "12",
+    "object_repr": "create-role",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 14,
+  "fields": {
+    "action_time": "2021-10-01T05:01:36.872Z",
+    "user": [
+      "admin@admin.com"
+    ],
+    "content_type": [
+      "authentication",
+      "permission"
+    ],
+    "object_id": "13",
+    "object_repr": "retrieve-role",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 15,
+  "fields": {
+    "action_time": "2021-10-01T05:01:54.023Z",
+    "user": [
+      "admin@admin.com"
+    ],
+    "content_type": [
+      "authentication",
+      "permission"
+    ],
+    "object_id": "14",
+    "object_repr": "update-role",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 16,
+  "fields": {
+    "action_time": "2021-10-01T05:02:21.807Z",
+    "user": [
+      "admin@admin.com"
+    ],
+    "content_type": [
+      "authentication",
+      "permission"
+    ],
+    "object_id": "15",
+    "object_repr": "destroy-role",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 17,
+  "fields": {
+    "action_time": "2021-10-01T05:02:58.174Z",
+    "user": [
+      "admin@admin.com"
+    ],
+    "content_type": [
+      "authentication",
+      "permission"
+    ],
+    "object_id": "16",
+    "object_repr": "list-permission",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 18,
+  "fields": {
+    "action_time": "2021-10-01T05:03:14.517Z",
+    "user": [
+      "admin@admin.com"
+    ],
+    "content_type": [
+      "authentication",
+      "permission"
+    ],
+    "object_id": "17",
+    "object_repr": "create-permission",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 19,
+  "fields": {
+    "action_time": "2021-10-01T05:03:37.494Z",
+    "user": [
+      "admin@admin.com"
+    ],
+    "content_type": [
+      "authentication",
+      "permission"
+    ],
+    "object_id": "18",
+    "object_repr": "retrieve-permission",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 20,
+  "fields": {
+    "action_time": "2021-10-01T05:03:58.707Z",
+    "user": [
+      "admin@admin.com"
+    ],
+    "content_type": [
+      "authentication",
+      "permission"
+    ],
+    "object_id": "19",
+    "object_repr": "update-permission",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 21,
+  "fields": {
+    "action_time": "2021-10-01T05:04:14.613Z",
+    "user": [
+      "admin@admin.com"
+    ],
+    "content_type": [
+      "authentication",
+      "permission"
+    ],
+    "object_id": "20",
+    "object_repr": "destroy-permission",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 22,
+  "fields": {
+    "action_time": "2021-10-01T05:04:50.166Z",
+    "user": [
+      "admin@admin.com"
+    ],
+    "content_type": [
+      "authentication",
+      "role"
+    ],
+    "object_id": "1",
+    "object_repr": "Admin",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 23,
+  "fields": {
+    "action_time": "2021-10-01T05:05:33.575Z",
+    "user": [
+      "admin@admin.com"
+    ],
+    "content_type": [
+      "authentication",
+      "role"
+    ],
+    "object_id": "2",
+    "object_repr": "Staff",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 24,
+  "fields": {
+    "action_time": "2021-10-01T05:06:31.818Z",
+    "user": [
+      "admin@admin.com"
+    ],
+    "content_type": [
+      "authentication",
+      "role"
+    ],
+    "object_id": "3",
+    "object_repr": "Regular",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+}
+]
