@@ -185,6 +185,9 @@ class UserViewset(viewsets.ModelViewSet):
     queryset = User.objects.all()
 
     permission_classes = [permissions.IsAuthenticated, UserActionPermission]
+    filter_backends = [filters.OrderingFilter, filters.SearchFilter]
+    ordering_fields = ['id', 'username', 'email']
+    search_fields = ['id', 'username', 'email']
 
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
@@ -200,6 +203,17 @@ class UserProfileViewset(viewsets.ModelViewSet):
     serializer_class = UserProfileSerializer
     queryset = UserProfile.objects.all()
     permission_classes = [permissions.IsAuthenticated, UserActionPermission]
+    filter_backends = [filters.OrderingFilter, filters.SearchFilter]
+    ordering_fields = ['id',
+                       'first_name',
+                       'last_name',
+                       'gender',
+                       'birthday']
+    search_fields = ['id',
+                     'first_name',
+                     'last_name',
+                     'gender',
+                     'birthday']
 
     def update(self, request, *args, **kwargs):
         partial = kwargs.pop('partial', False)
@@ -224,13 +238,16 @@ class RoleViewset(viewsets.ModelViewSet):
     serializer_class = RoleSerializer
     queryset = Role.objects.all()
     permission_classes = [permissions.IsAuthenticated, UserActionPermission]
+    filter_backends = [filters.OrderingFilter, filters.SearchFilter]
+    ordering_fields = ['id', 'title', 'description', 'created_at']
+    search_fields = ['id', 'title', 'description']
 
 
 class PermissionViewset(viewsets.ModelViewSet):
 
     serializer_class = PermissionSerializer
     queryset = Permission.objects.all()
-    # permission_classes = [permissions.IsAuthenticated, UserActionPermission]
+    permission_classes = [permissions.IsAuthenticated, UserActionPermission]
     filter_backends = [filters.OrderingFilter, filters.SearchFilter]
     ordering_fields = ['id', 'title', 'description', 'created_at']
     search_fields = ['id', 'title', 'description']
