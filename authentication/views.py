@@ -14,7 +14,7 @@ from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework import (generics, mixins, permissions, status, views,
-                            viewsets)
+                            viewsets, filters)
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 
@@ -230,7 +230,10 @@ class PermissionViewset(viewsets.ModelViewSet):
 
     serializer_class = PermissionSerializer
     queryset = Permission.objects.all()
-    permission_classes = [permissions.IsAuthenticated, UserActionPermission]
+    # permission_classes = [permissions.IsAuthenticated, UserActionPermission]
+    filter_backends = [filters.OrderingFilter, filters.SearchFilter]
+    ordering_fields = ['id', 'title', 'description', 'created_at']
+    search_fields = ['id', 'title', 'description']
 
 
 # Generic Views backup
