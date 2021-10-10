@@ -2,6 +2,7 @@
 from django.contrib import auth
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from django.contrib.sites.shortcuts import get_current_site
+from django.core.exceptions import ValidationError
 from django.urls import reverse
 from django.utils.encoding import (DjangoUnicodeDecodeError, force_str,
                                    smart_bytes, smart_str)
@@ -9,6 +10,8 @@ from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from rest_framework import serializers
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework_simplejwt.tokens import RefreshToken, TokenError
+import jwt
+from django.conf import settings
 
 from .models import Permission, Role, User, UserProfile
 
@@ -211,3 +214,22 @@ class RoleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Role
         fields = '__all__'
+
+
+class TokenVerficationSerializer(serializers.Serializer):
+    token = serializers.CharField(max_length=255, write_only=True)
+    user = UserSerializer(read_only=True)
+
+    def validate(self, attrs):
+        token = attrs['token']
+        try:
+            payload = jwt.decode(
+                token, settings.SECRET_KEY, algorithms='HS256')
+            user = User.objects.get(id=payload['user_id'])
+            attrs['user'] = user
+            return super().validate(attrs)
+
+        except jwt.ExpiredSignatureError as identifier:
+            raise ValidationError({'error': 'Token is expired'})
+        except jwt.exceptions.DecodeError as identifier:
+            raise ValidationError({'error': 'Token is invalid'})

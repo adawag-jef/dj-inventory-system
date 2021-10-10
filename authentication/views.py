@@ -25,7 +25,7 @@ from .serializers import (EmailVerificationSerializer, LoginSerializer,
                           LogoutSerializer, PermissionSerializer,
                           RegisterSerializer,
                           RequestPasswordEmailRequestSerializer,
-                          RoleSerializer, SetNewPasswordSerializer,
+                          RoleSerializer, SetNewPasswordSerializer, TokenVerficationSerializer,
                           UserProfileSerializer, UserSerializer)
 from .utils import Util
 
@@ -179,6 +179,23 @@ class LogoutAPIView(generics.GenericAPIView):
         serializer.save()
 
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class VerifyTokenAPIView(views.APIView):
+    serializer_class = TokenVerficationSerializer
+
+    @swagger_auto_schema(request_body=openapi.Schema(
+        type=openapi.TYPE_OBJECT,
+        properties={
+            'token': openapi.Schema(type=openapi.TYPE_STRING, description='string'),
+        }
+    ))
+    def post(self, request):
+
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 class UserViewset(viewsets.ModelViewSet):

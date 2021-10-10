@@ -5,7 +5,7 @@ from rest_framework.routers import DefaultRouter
 from .views import (LoginApiView, PasswordTokenCheckAPIView, RegisterView,
                     RequestPasswordResetEmail, SetNewPasswordAPIView,
                     VerifyEmail, LogoutAPIView, UserProfileDetailAPIView, UserViewset, UserProfileViewset, UserAPIView, UserDetailAPIView, UserProfileAPIView,
-                    UserProfileDetailAPIView, RoleViewset, PermissionViewset)
+                    UserProfileDetailAPIView, RoleViewset, PermissionViewset, VerifyTokenAPIView)
 
 
 router = DefaultRouter()
@@ -21,6 +21,7 @@ urlpatterns = [
     path('logout/', LogoutAPIView.as_view(), name="logout"),
     path('email-verify/', VerifyEmail.as_view(), name="email-verify"),
     path('token-refresh/', TokenRefreshView.as_view(), name="token-refresh"),
+    path('token-verify/', VerifyTokenAPIView.as_view(), name="token-verify"),
     path('request-reset-email/', RequestPasswordResetEmail.as_view(),
          name="request-reset-email"),
     path('password-reset/<uidb64>/<token>',
