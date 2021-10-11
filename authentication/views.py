@@ -256,10 +256,32 @@ class RoleViewset(viewsets.ModelViewSet):
 
     serializer_class = RoleSerializer
     queryset = Role.objects.all()
-    permission_classes = [permissions.IsAuthenticated, UserActionPermission]
+    # permission_classes = [permissions.IsAuthenticated, UserActionPermission]
     filter_backends = [filters.OrderingFilter, filters.SearchFilter]
     ordering_fields = ['id', 'title', 'description', 'created_at']
     search_fields = ['id', 'title', 'description']
+
+    pages_params = openapi.Parameter(
+        'pages', in_=openapi.IN_QUERY, description='set to All to get unpaginated list', type=openapi.TYPE_STRING)
+
+    @swagger_auto_schema(manual_parameters=[pages_params])
+    def list(self, request, *args, **kwargs):
+
+        if request.query_params.get('pages') == 'All':
+
+            roles = Role.objects.all()
+            serializer = self.get_serializer(roles, many=True)
+            return Response(serializer.data)
+
+        queryset = self.filter_queryset(self.get_queryset())
+
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
 
 
 class PermissionViewset(viewsets.ModelViewSet):
@@ -270,6 +292,28 @@ class PermissionViewset(viewsets.ModelViewSet):
     filter_backends = [filters.OrderingFilter, filters.SearchFilter]
     ordering_fields = ['id', 'title', 'description', 'created_at']
     search_fields = ['id', 'title', 'description']
+
+    pages_param = openapi.Parameter(
+        'pages', in_=openapi.IN_QUERY, description='set to All to get unpaginated list', type=openapi.TYPE_STRING)
+
+    @swagger_auto_schema(manual_parameters=[pages_param])
+    def list(self, request, *args, **kwargs):
+
+        if request.query_params.get('pages') == 'All':
+
+            permissions = Permission.objects.all()
+            serializer = self.get_serializer(permissions, many=True)
+            return Response(serializer.data)
+
+        queryset = self.filter_queryset(self.get_queryset())
+
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
 
 
 # Generic Views backup
