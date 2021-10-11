@@ -256,7 +256,7 @@ class RoleViewset(viewsets.ModelViewSet):
 
     serializer_class = RoleSerializer
     queryset = Role.objects.all()
-    # permission_classes = [permissions.IsAuthenticated, UserActionPermission]
+    permission_classes = [permissions.IsAuthenticated, UserActionPermission]
     filter_backends = [filters.OrderingFilter, filters.SearchFilter]
     ordering_fields = ['id', 'title', 'description', 'created_at']
     search_fields = ['id', 'title', 'description']
